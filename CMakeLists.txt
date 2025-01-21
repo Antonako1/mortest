@@ -41,10 +41,10 @@ else()
     )
 endif()
 
-# Delete and copy src\mortest.conf to the build directory
+# Delete and copy src\mortest.data to the build directory
 add_custom_command(TARGET mortest POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    "${CMAKE_SOURCE_DIR}/src/mortest.conf"
+    "${CMAKE_SOURCE_DIR}/src/mortest.data"
     $<TARGET_FILE_DIR:mortest>
 )
 

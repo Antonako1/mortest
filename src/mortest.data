@@ -1,9 +1,25 @@
 #!ATRC
+#   SECTIONS:
+#       __SETTINGS__SECTIONS__
+#       __CHARACTERS__SECTIONS__
+#       __NUMBERS__SECTIONS__
+#       __PUNCTUATION__SECTIONS__
+#       __EXTENDED__CHARACTERS__SECTIONS__
+#       __LEVEL__DATA__SECTIONS__
+#
+# For lists, use character '|' to separate the items
+
+
+# SETTINGS AND GLOBAL DATA:
+#   __SETTINGS__SECTIONS__
 [SETTINGS]
 
+# SPACE
+PRIMARY_INPUT_BUTTON=SPACE
 # Uncomment to allow the use of extended characters
-#EXTENDED_CHARACTER_BlOCKS=FINNISH;RUSSIAN;
+EXTENDED_CHARACTER_BlOCKS=FINNISH|RUSSIAN|
 
+# Used to define interval of time in milliseconds
 %UNIT_OF_TIME_MS%=100
 
 # UNIT_OF_TIME_MS times the value given below
@@ -13,11 +29,17 @@ SPACE_INTERVAL_IN_CHARACTERS_MS=1
 SPACE_INTERVAL_IN_WORDS_MS=3
 SPACE_INTERVAL_IN_SENTENCES_MS=7
 
+# The error margin for the interval of time in milliseconds
+INTERVAL_PLUS_MINUS_ERROR_MS=10
+
 DEBUG=0
 
-# Dot is '.' and dash is '-'
+%LEVEL_PREFIX%=LEVEL_
+LEVEL_DATA=INTRUDUCTION|1|2|3|4|5|6|7|8|9|10|
 
+# Dot is '.' and dash is '-'
 # The following are the default values for the characters
+# __CHARACTERS__SECTIONS__
 [CHARACTERS]
 CONTENTS=A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z
 A=.-
@@ -48,6 +70,7 @@ Y=-.--
 Z=--..
 
 # The following are the default values for the numbers
+# __NUMBERS__SECTIONS__
 [NUMBERS]
 CONTENTS=1|2|3|4|5|6|7|8|9|0
 1=.----
@@ -62,6 +85,7 @@ CONTENTS=1|2|3|4|5|6|7|8|9|0
 0=-----
 
 # The following are the default values for the punctuation marks
+# __PUNCTUATION__SECTIONS__
 [PUNCTUATION]
 CONTENTS=.|,|?|!|:|;|'|"|(|)|+|-|_|*|&|@|$|#
 .=.-.-.-
@@ -81,8 +105,9 @@ _=..--.-
 &=.-...
 @=.--.-.
 $=...-..-
-#'#
+#'
 
+# __EXTENDED__CHARACTERS__SECTIONS__
 [FINNISH]
 EXTEND_FROM=CHARACTERS,NUMBERS,PUNCTUATION
 CONTENTS=Å|Ä|Ö
@@ -125,3 +150,28 @@ CONTENTS=А|Б|В|Г|Д|Е|Ё|Ж|З|И|Й|К|Л|М|Н|О|П|Р|С|Т|У|Ф|Х|Ц
 Э=..-..
 Ю=..--	
 Я=.-.-	
+
+
+#   __LEVEL__DATA__SECTIONS__
+#   LEVEL DATA SECTIONS:
+#   LEVEL_<LEVEL_NAME>
+#   CONSISTS:
+#    USES_EXTENDED_CHARACTER_BLOCKS=<EXTENDED_CHARACTER_BLOCKS>   // The extended character blocks used in the level, if any. Comment out if not used
+#    DATA=<DATA>    // The text data for the level
+
+[LEVEL_INTRODUCTION]
+# USES_EXTENDED_CHARACTER_BLOCKS=
+DATA=HELLO WORLD
+
+[LEVEL_1]
+
+[LEVEL_2]
+[LEVEL_3]
+[LEVEL_4]
+[LEVEL_5]
+[LEVEL_6]
+[LEVEL_7]
+[LEVEL_8]
+[LEVEL_9]
+[LEVEL_10]
+
