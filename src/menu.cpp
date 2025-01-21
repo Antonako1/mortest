@@ -3,7 +3,7 @@
 #include <ATRC.h>
 #include <Windows.h>
 #include <conio.h>
-#include "../include/mor.hpp"
+#include "mor.hpp"
 
 void displayMenu(const std::string menuItems[], int menuSize, int selected) {
     system("cls"); // Clear screen
@@ -19,6 +19,7 @@ void displayMenu(const std::string menuItems[], int menuSize, int selected) {
 }
 
 KeyEventHandleStatus handleMenuKeyEvents(int &selected, int &key, const std::string menuItems[], int menuSize) {
+    bool getch_at_end = true;
     switch (key) {
     case KEY_UP:
         selected = (selected - 1 + menuSize) % menuSize;
@@ -30,6 +31,7 @@ KeyEventHandleStatus handleMenuKeyEvents(int &selected, int &key, const std::str
         system("cls");
         if (menuItems[selected] == "Exit") {
             mor_ad.RUNNING = false;
+            getch_at_end = false;
         } else if (menuItems[selected] == "View ATRC Settings") {
             std::cout << CONSOLE_COLOUR_MAGENTA << "DEBUG MODE: " << fd["SETTINGS"]["DEBUG"] << CONSOLE_COLOR_RESET << "\n";
         } else if (menuItems[selected] == "Enable/Disable Verbose Mode") {
@@ -48,8 +50,10 @@ KeyEventHandleStatus handleMenuKeyEvents(int &selected, int &key, const std::str
                 std::cout << "LEVELS NOT FOUND\n";
             }
         }
-        std::cout << "\nPress any key to return to the menu...";
-        _getch();
+        if(getch_at_end){
+            std::cout << "\nPress any key to continue...";
+            _getch();
+        }
         break;
     case KEY_QUIT:
         mor_ad.state = State::EXIT;

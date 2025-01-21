@@ -3,7 +3,7 @@
 #include <ATRC.h>
 #include <Windows.h>
 #include <conio.h>
-#include "../include/mor.hpp"
+#include "mor.hpp"
 
 
 mor_args_n_data_t mor_ad;
@@ -45,11 +45,11 @@ int main(int argc, char *argv[]) {
     mor_ad.state = State::MENU;
     while (mor_ad.RUNNING) {
         switch (mor_ad.state) {
-        int key = _getch();
-        case State::MENU:
+        case State::MENU: {
             displayMenu(menuItems, menuSize, selected);
+            int key = _getch();
             handleMenuKeyEvents(selected, key, menuItems, menuSize);
-            break;
+        } break;
         case State::EXIT:         
             mor_ad.RUNNING = false;
             break;

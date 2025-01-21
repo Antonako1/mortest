@@ -19,7 +19,9 @@ endif()
 # Define executable
 add_executable(mortest
     "src/main.cpp"
+    "src/menu.cpp"
 )
+target_include_directories(mortest PRIVATE "src")
 
 # Include ATRC's headers
 target_include_directories(mortest PRIVATE ${ATRC_INCLUDE_DIR})
