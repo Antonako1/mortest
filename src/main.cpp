@@ -2,8 +2,8 @@
 #include <ATRC.h>
 
 int main() {
-
-    atrc::ATRC_FD fd = atrc::ATRC_FD("mortest.conf");
+    std::cout << "Hello, World!" << std::endl;
+    atrc::ATRC_FD fd = atrc::ATRC_FD("c:\\Users\\anton\\Documents\\GitHub\\mortest\\out\\win_64\\Debug\\mortest.conf");
     if(!fd.CheckStatus()){
         std::cout << "Error: ATRC_FD failed to initialize" << std::endl;
         return 1;
