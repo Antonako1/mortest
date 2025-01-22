@@ -20,6 +20,9 @@ endif()
 add_executable(mortest
     "src/main.cpp"
     "src/menu.cpp"
+    "src/levels.cpp"
+    "src/settings.cpp"
+    "src/translators.cpp"
 )
 target_include_directories(mortest PRIVATE "src")
 

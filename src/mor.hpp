@@ -1,23 +1,11 @@
 #pragma once
+#include <iostream>
+#include <string>
 #include <ATRC.h>
+#include <Windows.h>
+#include <conio.h>
 
-
-enum class State {
-    MENU = 0,
-    EXIT,
-
-    STATE_AMOUNT,
-};
-
-typedef struct {
-    bool VERBOSE;
-    bool RUNNING;
-    State state;
-} mor_args_n_data_t;
-
-extern mor_args_n_data_t mor_ad;
-
-extern atrc::ATRC_FD fd;
+#define SEPARATOR                   '|'
 
 #define CONSOLE_COLOR_RESET         "\033[0m"
 #define CONSOLE_COLOUR_WHITE        "\033[37m"
@@ -145,10 +133,29 @@ extern atrc::ATRC_FD fd;
 #define KEY_y 121
 #define KEY_z 122
 
-
 #define KEY_QUIT    KEY_ESCAPE
 
-enum KeyEventHandleStatus {
+enum class State {
+    MENU = 0,
+    EXIT,
+    LEVELS,
+    TRANSLATORS,
+    VIEW_ATRC_SETTINGS,
+
+    STATE_AMOUNT,
+};
+
+typedef struct {
+    bool VERBOSE;
+    bool RUNNING;
+    State state;
+} mor_args_n_data_t;
+
+extern mor_args_n_data_t mor_ad;
+
+extern atrc::ATRC_FD fd;
+
+enum class KeyEventHandleStatus {
     KEY_EVENT_HANDLED = 0,
     KEY_EVENT_NOT_HANDLED,
     EXIT_PROGRAM
@@ -156,3 +163,32 @@ enum KeyEventHandleStatus {
 
 void displayMenu(const std::string menuItems[], int menuSize, int selected);
 KeyEventHandleStatus handleMenuKeyEvents(int &selected, int &key, const std::string menuItems[], int menuSize);
+
+
+
+#define LEVEL_SELECTOR_HEIGHT       10
+
+void displayLevelSelector(
+    const std::string levelItems[], 
+    int levelSize, 
+    int selected
+);
+KeyEventHandleStatus handleLevelSelectorKeyEvents(
+    int &selected, 
+    int &key, 
+    const std::string levelItems[], 
+    int levelSize
+);
+
+
+void displayTranslatorMenu(
+	const std::string translatorItems[],
+	int translatorSize,
+	int selected
+);
+KeyEventHandleStatus handleTranslatorMenuKeyEvents(
+	int& selected,
+	int& key,
+	const std::string translatorItems[],
+	int translatorSize
+);

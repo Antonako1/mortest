@@ -22,6 +22,9 @@ EXTENDED_CHARACTER_BlOCKS=FINNISH|RUSSIAN|
 # Used to define interval of time in milliseconds
 %UNIT_OF_TIME_MS%=100
 
+# Sound frequency
+%FREQUENCY%=600
+
 # UNIT_OF_TIME_MS times the value given below
 DOT_INTERVAL_MS=1
 DASH_INTERVAL_MS=3

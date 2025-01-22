@@ -7,9 +7,9 @@
 
 void displayMenu(const std::string menuItems[], int menuSize, int selected) {
     system("cls"); // Clear screen
-    std::cout << CONSOLE_COLOUR_CYAN << "========= ATRC Data Viewer =========" << CONSOLE_COLOR_RESET << "\n";
-    for (int i = 0; i < menuSize; i++) {
-        if (i == selected) {
+    std::cout << CONSOLE_COLOUR_CYAN << "========= MORTEST MORSE PROGRAM =========" << CONSOLE_COLOR_RESET << "\n";
+    for(int i = 0; i < menuSize; i++) {
+        if(i == selected) {
             // Highlight selected menu item
             std::cout << CONSOLE_COLOUR_WHITE_BG << CONSOLE_COLOUR_BLACK;
         }
@@ -32,34 +32,24 @@ KeyEventHandleStatus handleMenuKeyEvents(int &selected, int &key, const std::str
         if (menuItems[selected] == "Exit") {
             mor_ad.RUNNING = false;
             getch_at_end = false;
-        } else if (menuItems[selected] == "View ATRC Settings") {
-            std::cout << CONSOLE_COLOUR_MAGENTA << "DEBUG MODE: " << fd["SETTINGS"]["DEBUG"] << CONSOLE_COLOR_RESET << "\n";
-        } else if (menuItems[selected] == "Enable/Disable Verbose Mode") {
-            mor_ad.VERBOSE = !mor_ad.VERBOSE;
-            std::cout << "Verbose mode " << (mor_ad.VERBOSE ? "enabled" : "disabled") << ".\n";
-        } else if (menuItems[selected] == "Check Extended Character Blocks") {
-            if (fd.DoesExistKey("SETTINGS", "EXTENDED_CHARACTER_BlOCKS")) {
-                std::cout << "EXTENDED CHARACTER BLOCKS: '" << fd["SETTINGS"]["EXTENDED_CHARACTER_BlOCKS"] << "'\n";
-            } else {
-                std::cout << "EXTENDED CHARACTER BLOCKS: NOT FOUND\n";
-            }
-        } else if (menuItems[selected] == "View Level Data") {
-            if (fd.DoesExistKey("SETTINGS", "LEVEL_DATA")) {
-                std::cout << "LEVELS FOUND: '" << fd["SETTINGS"]["LEVEL_DATA"] << "'\n";
-            } else {
-                std::cout << "LEVELS NOT FOUND\n";
-            }
+        } else if(menuItems[selected] == "Levels") {
+            mor_ad.state = State::LEVELS;
+        } else if(menuItems[selected] == "Translators") {
+            mor_ad.state = State::TRANSLATORS;
+        } else if(menuItems[selected] == "View ATRC Settings") {
+            mor_ad.state = State::VIEW_ATRC_SETTINGS;
         }
-        if(getch_at_end){
-            std::cout << "\nPress any key to continue...";
-            _getch();
-        }
+        
+        // if(getch_at_end){
+        //     std::cout << "\nPress any key to continue...";
+        //     _getch();
+        // }
         break;
     case KEY_QUIT:
         mor_ad.state = State::EXIT;
-        return EXIT_PROGRAM;
+        return KeyEventHandleStatus::EXIT_PROGRAM;
     default:
         break;
     }
-    return KEY_EVENT_HANDLED;
+    return KeyEventHandleStatus::KEY_EVENT_HANDLED;
 }
