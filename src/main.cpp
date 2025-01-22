@@ -86,7 +86,18 @@ int main(int argc, char *argv[]) {
             handleLevelSelectorKeyEvents(levelSelected, key, levels.data(), levelCount);
         } break;
         case State::TRANSLATORS: {
-            displayTranslatorMenu
+            displayTranslatorMenu(
+                translatorItems,
+                translatorSize,
+                translatorSelected
+            );
+            int key = _getch();
+            handleTranslatorMenuKeyEvents(
+                translatorSelected,
+                key,
+                translatorItems,
+                translatorSize
+            );
         } break;
         case State::VIEW_ATRC_SETTINGS: {
 
